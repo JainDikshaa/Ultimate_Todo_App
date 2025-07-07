@@ -1,0 +1,230 @@
+:root {
+  --primary: #6c5ce7;
+  --high-priority: #ff7675;
+  --medium-priority: #fdcb6e;
+  --low-priority: #55efc4;
+  --dark: #2d3436;
+  --light: #f5f6fa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+header h1 i {
+  margin-right: 10px;
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+input, select, button {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#taskInput {
+  flex: 1;
+  min-width: 200px;
+}
+
+#prioritySelect {
+  width: 120px;
+  cursor: pointer;
+}
+
+#dueDate {
+  width: 150px;
+}
+
+#addBtn {
+  background: var(--light);
+  color: var(--primary);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#addBtn:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+.controls {
+  display: flex;
+  padding: 15px;
+  background: #f1f2f6;
+}
+
+.filter-btn {
+  flex: 1;
+  margin: 0 5px;
+  background: transparent;
+  color: var(--dark);
+  border: 2px solid #dfe6e9 !important;
+  transition: all 0.3s;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary) !important;
+}
+
+.filter-btn:hover:not(.active) {
+  background: #dfe6e9;
+}
+
+#taskList {
+  list-style: none;
+  padding: 20px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.task-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 8px;
+}
+
+.task-item.high::before { background: var(--high-priority); }
+.task-item.medium::before { background: var(--medium-priority); }
+.task-item.low::before { background: var(--low-priority); }
+
+.task-content {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.task-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.task-due {
+  font-size: 0.85rem;
+  color: #636e72;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.task-due i {
+  font-size: 0.9rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-actions button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.complete-btn {
+  background: #00b894;
+  color: white;
+}
+
+.complete-btn:hover {
+  background: #00a884;
+}
+
+.delete-btn {
+  background: #ff7675;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e84393;
+}
+
+.completed .task-title {
+  text-decoration: line-through;
+  color: #b2bec3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .input-section {
+    flex-direction: column;
+  }
+  
+  input, select, #dueDate, #addBtn {
+    width: 100% !important;
+  }
+}
